@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
+import { DetailPage } from '../detail/detail';
 
 /**
  * Generated class for the ResultPage page.
@@ -14,12 +17,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'result.html',
 })
 export class ResultPage {
+  products:any=0;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    let keyword = this.navParams.get('keyword');
+    let url = "http://localhost:8080/product/name/" + keyword;
+
+    this.http.get(url).map(res=>res.json()).subscribe(data=>{ this.products = data});
+
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ResultPage');
   }
-
+  
+  showDetail(id){
+    this.navCtrl.push(DetailPage,{pid: id});
+  }
 }

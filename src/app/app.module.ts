@@ -13,6 +13,9 @@ import { ResultPage } from '../pages/result/result';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+import { NewproductPage } from '../pages/newproduct/newproduct';
+
 
 @NgModule({
   declarations: [
@@ -22,12 +25,14 @@ import { HttpModule } from '@angular/http';
     HomePage,
     TabsPage,
     DetailPage,
-    ResultPage
+    ResultPage,
+    NewproductPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -37,12 +42,13 @@ import { HttpModule } from '@angular/http';
     HomePage,
     TabsPage,
     DetailPage,
-    ResultPage
+    ResultPage,
+    NewproductPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler}    
   ]
 })
 export class AppModule {}

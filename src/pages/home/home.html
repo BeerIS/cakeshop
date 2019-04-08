@@ -5,6 +5,11 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-fab right bottom>
+    <button ion-fab mini (click)="gotoNewProduct()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
   <ion-list>
     <ion-item *ngFor="let p of products">
       <h2>{{p.name}}</h2>

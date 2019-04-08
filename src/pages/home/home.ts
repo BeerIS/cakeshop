@@ -4,6 +4,7 @@ import { DetailPage } from '../detail/detail';
 
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { NewproductPage } from '../newproduct/newproduct';
 
 @Component({
   selector: 'page-home',
@@ -21,5 +22,9 @@ export class HomePage {
   }
   showDetail(id){
     this.navCtrl.push(DetailPage,{pid: id});
+  }
+
+  gotoNewProduct(){
+    this.navCtrl.push(NewproductPage);
   }
 }
