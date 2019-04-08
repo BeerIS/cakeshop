@@ -15,7 +15,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { NewproductPage } from '../pages/newproduct/newproduct';
-
+import { Toast } from '@ionic-native/toast';
 
 @NgModule({
   declarations: [
@@ -48,7 +48,8 @@ import { NewproductPage } from '../pages/newproduct/newproduct';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}    
+    Toast,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })
 export class AppModule {}

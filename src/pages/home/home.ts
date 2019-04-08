@@ -13,12 +13,7 @@ import { NewproductPage } from '../newproduct/newproduct';
 export class HomePage {
   products:any=0;
   constructor(public navCtrl: NavController, public navParam: NavParams, public http: Http) {
-    this.http.get('http://localhost:8080/products')
-      .map(res=>res.json())
-      .subscribe(data=>{
-        this.products = data;
-      });
-
+    this.getData();
   }
   showDetail(id){
     this.navCtrl.push(DetailPage,{pid: id});
@@ -26,5 +21,16 @@ export class HomePage {
 
   gotoNewProduct(){
     this.navCtrl.push(NewproductPage);
+  }
+  ionViewWillEnter(){
+    this.getData();
+  }
+
+  getData(){
+    this.http.get('http://localhost:8080/products')
+    .map(res=>res.json())
+    .subscribe(data=>{
+      this.products = data;
+    });
   }
 }

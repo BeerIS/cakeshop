@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
+import { AlertController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -15,7 +16,9 @@ export class NewproductPage {
     flavour:"",
     price:""
   };
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient) {
+  data:any;
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    private http: HttpClient, private alertCtrl:AlertController) {
   }
 
   ionViewDidLoad() {
@@ -27,7 +30,19 @@ export class NewproductPage {
     this.http.post(url,this.product)
     .subscribe(data=>{
       console.log(data);
-      this.navCtrl.popToRoot();
+      this.data = data;
+      if(this.data.msg==true){
+          this.showAlert();
+          this.navCtrl.popToRoot();      
+      }      
     });
+  }
+  showAlert() {
+    const alert = this.alertCtrl.create({
+      title: 'Success',
+      subTitle: 'Data added',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 }
